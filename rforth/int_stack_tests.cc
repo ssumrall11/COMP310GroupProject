@@ -4,7 +4,7 @@
 
 #include <gtest/gtest.h>
 
-#include "intstack.hh"
+#include "int_stack.hh"
 
 TEST(IntStackTests, Initialization)
 {

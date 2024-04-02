@@ -6,7 +6,8 @@ add_executable(
     rforth
     main.c
     token.c
-    int_stack.c)
+    int_stack.c
+    wordmap.c)
 
 add_executable(
     int_stack_tests
