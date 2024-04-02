@@ -144,13 +144,13 @@ TEST(IntStackTests, TestEquals){
    int_stack_init(&stack1, capacity);
    int_stack_push(&stack1, 64);
    int_stack_push(&stack1, 64);
-   int_stack_equals(&stack1);
+   int_stack_equal(&stack1);
    ASSERT_TRUE(int_stack_pop(&stack1, &top_value));
   //ASSERT_TRUE(int_stack_pop(&stack1, &next_to_top_value));
    ASSERT_EQ(-1, top_value);
    int_stack_push(&stack1, 73);
    int_stack_push(&stack1, 33);
-   int_stack_equals(&stack1);
+   int_stack_equal(&stack1);
    ASSERT_TRUE(int_stack_pop(&stack1, &top_value));
    //ASSERT_TRUE(int_stack_pop(&stack1, &next_to_top_value));
    ASSERT_EQ(0, top_value);
@@ -162,13 +162,13 @@ TEST(IntStackTests, TestLessThan){
    int_stack_init(&stack1, capacity);
    int_stack_push(&stack1, 5);
    int_stack_push(&stack1, 2);
-   int_stack_less_than(&stack1);
+   int_stack_less(&stack1);
    ASSERT_TRUE(int_stack_pop(&stack1, &top_value));
   // ASSERT_TRUE(int_stack_pop(&stack1, &next_to_top_value));
    ASSERT_EQ(-1, top_value);
    int_stack_push(&stack1, 5);
    int_stack_push(&stack1, 12);
-   int_stack_less_than(&stack1);
+   int_stack_less(&stack1);
    ASSERT_TRUE(int_stack_pop(&stack1, &top_value));
   // ASSERT_TRUE(int_stack_pop(&stack1, &next_to_top_value));
    ASSERT_EQ(0, top_value);
@@ -180,70 +180,39 @@ TEST(IntStackTests, TestGreaterThan){
    int_stack_init(&stack1, capacity);
    int_stack_push(&stack1, 5);
    int_stack_push(&stack1, 22);
-   int_stack_greater_than(&stack1);
+   int_stack_greater(&stack1);
    ASSERT_TRUE(int_stack_pop(&stack1, &top_value));
    //ASSERT_TRUE(int_stack_pop(&stack1, &next_to_top_value));
    ASSERT_EQ(-1, top_value);
    int_stack_push(&stack1, 50);
    int_stack_push(&stack1, 12);
-   int_stack_greater_than(&stack1);
+   int_stack_greater(&stack1);
    ASSERT_TRUE(int_stack_pop(&stack1, &top_value));
    //ASSERT_TRUE(int_stack_pop(&stack1, &next_to_top_value));
    ASSERT_EQ(0, top_value);
 }
-TEST(IntStackTests, TestInvertEquals){
+TEST(IntStackTests, TestInvert){
    int_stack_t stack1;
    int top_value, next_to_top_value;
    const int capacity = 10;
    int_stack_init(&stack1, capacity);
    int_stack_push(&stack1, 68);
-   int_stack_push(&stack1, 121);
-   int_stack_invert_one(&stack1);
+   int_stack_invert(&stack1);
    ASSERT_TRUE(int_stack_pop(&stack1, &top_value));
    //ASSERT_TRUE(int_stack_pop(&stack1, &next_to_top_value));
-   ASSERT_EQ(-1, top_value);
-   int_stack_push(&stack1, 21);
-   int_stack_push(&stack1, 21);
-   int_stack_invert_one(&stack1);
-   ASSERT_TRUE(int_stack_pop(&stack1, &top_value));
-   //ASSERT_TRUE(int_stack_pop(&stack1, &next_to_top_value));
-   ASSERT_EQ(0, top_value);
-}
-TEST(IntStackTests, TestInvertLessThan){
-   int_stack_t stack1;
-   int top_value, next_to_top_value;
-   const int capacity = 10;  
-   int_stack_init(&stack1, capacity);
+   ASSERT_EQ(-69, top_value);
    int_stack_push(&stack1, 77);
    int_stack_push(&stack1, 70);
-   int_stack_invert_two(&stack1);
+   int_stack_invert(&stack1);
    ASSERT_TRUE(int_stack_pop(&stack1, &top_value));
    //ASSERT_TRUE(int_stack_pop(&stack1, &next_to_top_value));
    ASSERT_EQ(-1, top_value);
    int_stack_push(&stack1, 170);
    int_stack_push(&stack1, 900);
-   int_stack_invert_two(&stack1);
+   int_stack_invert(&stack1);
    ASSERT_TRUE(int_stack_pop(&stack1, &top_value));
    //ASSERT_TRUE(int_stack_pop(&stack1, &next_to_top_value));
    ASSERT_EQ(-0, top_value);
-}
-TEST(IntStackTests, TestInvertGreaterThan){
-   int_stack_t stack1;
-   int top_value, next_to_top_value;
-   const int capacity = 10;
-   int_stack_init(&stack1, capacity);
-   int_stack_push(&stack1, 10);
-   int_stack_push(&stack1, 20);
-   int_stack_invert_three(&stack1);
-   ASSERT_TRUE(int_stack_pop(&stack1, &top_value));
-   //ASSERT_TRUE(int_stack_pop(&stack1, &next_to_top_value));
-   ASSERT_EQ(-1, top_value);
-   int_stack_push(&stack1, 100);
-   int_stack_push(&stack1, 20);
-   int_stack_invert_three(&stack1);
-   ASSERT_TRUE(int_stack_pop(&stack1, &top_value));
-   //ASSERT_TRUE(int_stack_pop(&stack1, &next_to_top_value));
-   ASSERT_EQ(0, top_value);
 }
 /*TEST(IntStackTests, TestOr){
    int_stack_t stack1;
@@ -1158,14 +1127,14 @@ TEST(IntStackTests, TestDupTwo){
     int_stack_init(&stack1, capacity);
     int_stack_push(&stack1, 7);
     int_stack_push(&stack1, 6);
-    int_stack_dup_two(&stack1);
+    int_stack_2dup(&stack1);
     ASSERT_TRUE(int_stack_pop(&stack1, &top_value));
     ASSERT_TRUE(int_stack_pop(&stack1, &next_to_top_value));
     ASSERT_EQ(6, top_value);
     ASSERT_EQ(7, next_to_top_value);
     int_stack_push(&stack1, 10);
     int_stack_push(&stack1, 9);
-    int_stack_dup_two(&stack1);
+    int_stack_2dup(&stack1);
     ASSERT_TRUE(int_stack_pop(&stack1, &top_value));
     ASSERT_TRUE(int_stack_pop(&stack1, &next_to_top_value));
     ASSERT_EQ(9, top_value);
@@ -1180,7 +1149,7 @@ TEST(IntStackTests, TestSwapTwo){// fix this one later
     int_stack_push(&stack1, 6);
     int_stack_push(&stack1, 9);
     int_stack_push(&stack1, 12);
-    int_stack_swap_two(&stack1);
+    int_stack_2swap(&stack1);
     ASSERT_TRUE(int_stack_pop(&stack1, &top_value));
     ASSERT_TRUE(int_stack_pop(&stack1, &next_to_top_value));
     ASSERT_EQ(6, top_value);
@@ -1195,7 +1164,7 @@ TEST(IntStackTests, TestOverTwo){
     int_stack_push(&stack1, 16);
     int_stack_push(&stack1, 17);
     int_stack_push(&stack1, 18);
-    int_stack_over_two(&stack1);
+    int_stack_2over(&stack1);
     ASSERT_TRUE(int_stack_pop(&stack1, &top_value));
     ASSERT_TRUE(int_stack_pop(&stack1, &next_to_top_value));
     ASSERT_EQ(16, top_value);
@@ -1209,7 +1178,7 @@ TEST(IntStackTests, TestDropTwo){
     int_stack_push(&stack1, 88);
     int_stack_push(&stack1, 77);
     int_stack_push(&stack1, 11);
-    int_stack_drop_two(&stack1);
+    int_stack_2drop(&stack1);
     ASSERT_TRUE(int_stack_pop(&stack1, &after_value));
     ASSERT_EQ(88, after_value);
 }
@@ -1229,7 +1198,7 @@ TEST(IntStackTests, TestSubtraction){
     int_stack_init(&stack1, capacity);
     int_stack_push(&stack1, 17);
     int_stack_push(&stack1, 8);
-    int_stack_sub(&stack1);
+    int_stack_subtract(&stack1);
     ASSERT_EQ(9, 17 - 8);
 }
 TEST(IntStackTests, TestMultiplication){
@@ -1238,7 +1207,7 @@ TEST(IntStackTests, TestMultiplication){
    int_stack_init(&stack1, capacity);
    int_stack_push(&stack1, 10);
    int_stack_push(&stack1, 25);
-   int_stack_mul(&stack1);
+   int_stack_multiply(&stack1);
    ASSERT_EQ(250, 25 * 10);
 }
 TEST(IntStackTests, TestDivision){
@@ -1247,7 +1216,7 @@ TEST(IntStackTests, TestDivision){
    int_stack_init(&stack1, capacity);
    int_stack_push(&stack1, 15);
    int_stack_push(&stack1, 5);
-   int_stack_div(&stack1);
+   int_stack_divide(&stack1);
    ASSERT_EQ(3, 15 / 5);
 }
 TEST(IntStackTests, TestModulos){//note: this test tests both modulo versions!
@@ -1257,7 +1226,7 @@ TEST(IntStackTests, TestModulos){//note: this test tests both modulo versions!
    int_stack_push(&stack1, 122);
    int_stack_push(&stack1, 13);
    int_stack_mod(&stack1);
-   int_stack_mod_two(&stack1);
+   int_stack_dividemod(&stack1);
    ASSERT_EQ(5, 122 % 13);
    ASSERT_EQ(9, 122 / 13);
 }
