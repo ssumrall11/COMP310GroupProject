@@ -372,7 +372,7 @@ int int_stack_and(int_stack_t *stk){
   int top_value,next_to_top_value;
   int_stack_pop(stk,&top_value);
   int_stack_pop(stk,&next_to_top_value);
-  return int_stack_push(stk,(top_value!=0 && next_to_top_value!=0)?0:-1);
+  return int_stack_push(stk,(top_value==0 || next_to_top_value==0)?0:-1);
 }
 
 // removes the last two numbers on the stack, tests if both are 0, and puts the result on the top of the stack (-1 for true, 0 for false)
