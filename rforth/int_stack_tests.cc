@@ -438,6 +438,38 @@ TEST(IntStackTests, TestDivisionModulos){//note: this test tests both modulo ver
    ASSERT_EQ(5, top_value);
    ASSERT_FALSE(int_stack_pop(&stack1, &top_value));
 }
+TEST(IntStackTests, TestDepth){
+   int_stack_t stack1;
+   int top_value;
+   const int capacity = 10;
+   int_stack_init(&stack1, capacity);
+   int stack_size = stack1.size;
+   ASSERT_TRUE(int_stack_depth(&stack1));
+   ASSERT_EQ(0, top_value); 
+   int_stack_push(&stack1, 2);
+   int_stack_push(&stack1, 4);
+   int_stack_push(&stack1, 6);
+   int_stack_push(&stack1, 8);
+   int_stack_push(&stack1, 10); 
+   stack_size = stack1.size;
+   ASSERT_TRUE(int_stack_depth(&stack1));
+   ASSERT_EQ(5, top_value);
+}
+TEST(IntStackTests, TestRotTwo){
+   int_stack_t stack1;
+   int top_value;
+   const int capacity = 10;
+   int_stack_init(&stack1, capacity);
+   int_stack_push(&stack1, 2);
+   int_stack_push(&stack1, 3);
+   int_stack_push(&stack1, 4);
+   int_stack_push(&stack1, 5);
+   int_stack_push(&stack1, 7);
+   int_stack_push(&stack1, 8);
+   int_stack_2rot(&stack1);
+   ASSERT_TRUE(int_stack_pop(&stack1, &top_value));
+   ASSERT_EQ(3, top_value); 
+}
 int main(int argc, char **argv)
 {
     testing::InitGoogleTest(&argc, argv);
