@@ -444,6 +444,7 @@ TEST(IntStackTests, TestDepth){
    const int capacity = 10;
    int_stack_init(&stack1, capacity);
    int stack_size = stack1.size;
+   //int_stack_depth(&stack1);
    ASSERT_TRUE(int_stack_depth(&stack1));
    ASSERT_EQ(0, top_value); 
    int_stack_push(&stack1, 2);
@@ -452,6 +453,7 @@ TEST(IntStackTests, TestDepth){
    int_stack_push(&stack1, 8);
    int_stack_push(&stack1, 10); 
    stack_size = stack1.size;
+   //int_stack_depth(&stack1);
    ASSERT_TRUE(int_stack_depth(&stack1));
    ASSERT_EQ(5, top_value);
 }
