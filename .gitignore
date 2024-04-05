@@ -51,7 +51,7 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
-# other stuff i didn' want added
+# other stuff I don't want added
 .idea/
 build/*
 !/build/bin/*
