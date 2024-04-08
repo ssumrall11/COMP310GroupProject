@@ -6,7 +6,7 @@
 // NOTE: the version of strcmp in the string.h library doesn't work here because the strings are stored as pointers (I thinK)
 int strcmp(char *s0,char *s1){
   int i=0; //
-  while(i<0){ // repeat until i gets set to a negative value
+  while(i>=0){ // repeat until i gets set to a negative value
     if(*(s0+i)!=*(s1+i)){ // if the characters at the current index of each string don't match
       i=-2; // break the loop with i set to -2
     }else if(*(s0+i-1)=='\0'){ // if the characters at the current index of each string ar both string terminators
