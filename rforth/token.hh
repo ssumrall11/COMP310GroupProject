@@ -1,3 +1,5 @@
+// This header ensures C linkage is enforced when running C++ unit tests on C code.
+
 #ifdef __cplusplus
 
 extern "C" {
