@@ -18,5 +18,5 @@ extern LL_node_t* LL_node_init(token_t* token,AST_node_t* node);
 extern LL_t* LL_init(LL_node_t* head);
 extern void LL_free(LL_node_t *head);
 extern void LL_add(LL_t* list,LL_node_t* node);
-
+extern void LL_print(LL_t* list, int indent);
 ##endif

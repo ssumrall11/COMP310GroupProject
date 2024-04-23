@@ -46,7 +46,7 @@ void LL_add(LL_t* list,LL_node_t* node){
 }
 
 
-void LL_print(LL_t* list,char* pad,int indent){
+void LL_print(LL_t* list,int indent){
   for(int i=0; i<indent; i++){
     printf(" ");
   }
