@@ -23,7 +23,7 @@ extern token_type_t id_type(char* str);
 extern token_t* create_token(token_type_t type, char* str);
 
 // print the token
-extern void print_token(token_t* token);
+extern void print_token(token_t* token,int indent);
 
 // Function to free memory allocated for a token
 extern void free_token(token_t* token);

@@ -115,6 +115,9 @@ void free_AST(AST_node_t* root){
 }
 
 void AST_print(AST_node_t* root,int indent){
-  char* pad="";
-  printf("\"%s\": []\n  ",root->str);
+ for(int i=0; i<indent; i++){
+   printf(" ");
+ }
+ printf("\"%s\":\n",root->str);
+ LL_print(root->child,indent+2);
 }

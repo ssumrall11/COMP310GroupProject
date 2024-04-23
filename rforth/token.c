@@ -44,7 +44,10 @@ token_t* create_token(token_type_t type,char* str) {
 }
 
 // prints the contents of the token
-void print_token(token_t* token){
+void print_token(token_t* token,int indent){
+  for(int i=0; i<indent; i++){
+    printf(" ");
+  }
   // print type
   int t=token->type;
   if(t==1){
