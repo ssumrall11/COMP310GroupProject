@@ -44,3 +44,23 @@ void LL_add(LL_t* list,LL_node_t* node){
   }
   list->tail=node;
 }
+
+
+void LL_print(LL_t* list,char* pad,int indent){
+  for(int i=0; i<indent; i++){
+    printf(" ");
+  }
+  printf("[");
+  LL_node_t* c = c->head;
+  printf("LL_t: ");
+  while(c != NULL){
+      if(c->value.token == NULL){
+	AST_print(c->value.node,indent);
+      } else if(c->value.node == NULL) {
+	print_token(c->value.token,indent);
+      }
+      printf(",");
+      c=c->next;
+   }
+   printf("]\n");
+}
