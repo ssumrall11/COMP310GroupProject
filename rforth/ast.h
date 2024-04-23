@@ -14,5 +14,6 @@ typedef struct AST_node {
 extern AST_node_t* generate_AST(map_t* worddefs,char* str,char* triggerword){
 extern void AST_process(AST_node_t* root);
 extern void AST_free(AST_node_t* root);
+extern void AST_print(AST_node_t* root,int indent);
 
 #endif
