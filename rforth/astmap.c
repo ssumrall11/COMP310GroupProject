@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+//#include <string.h>
 #include "astmap.h"
+//#include "ast.h"
+//#include "LinkedList.h"
 
 void map_init(map_t *map,int capacity){
   map->head=malloc(capacity*sizeof(map_node_t*));

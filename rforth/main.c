@@ -3,10 +3,12 @@
 #include <string.h>
 #include "token.h"
 #include "int_stack.h"
-#include "wordmap.h"
+//#include "ast.h"
+//#include "astmap.h"
+#include "LinkedList.h"
 
 // processes a single line of forth code
-int process(int_stack_t *stack,wordmap_t *words,char *line){
+int process(int_stack_t *stack,map_t *words,char *line){
   char **toLine=&line;
   int output;
   // parse tokens
@@ -36,26 +38,22 @@ int process(int_stack_t *stack,wordmap_t *words,char *line){
         break;
       case 3: // if the token is a symbol
         if(*token->str==':'){
+          /*
           token=get_next_token(toLine);
           int i=0;
           while(line[i]!=' ' || line[i+1]!=';' || !(line[i+2]==' ' || line[i+2]=='\t' || line[i+2]=='\n' || line[i+2]=='\0')){
             i++;
           }
           line[i]='\0';
-          wordmap_put(words,token->str,line); // overwrite if the word is already defined
+          */
+          token_t* name=get_next_token(toLine);
+          AST_node_t* tree=generate_AST(words,toLine,":");
+          map_put(words,name->str,tree); // overwrite if the word is already defined
         }
-// temporary response
-        print_token(token); // print the token
+        //print_token(token,0); // print the token
         break;
       case 4: // if the token is a word
         // default words
-/* still needs to me added as default words (among others)
-  ."              (printing strings)
-  if else then    (conditional statements)
-  begin until     (while loop)
-  do loop         (for loop)
-  roll            (just really useful I guess)
-*/
         if(0==strcmp(token->str,".s")){
           int_stack_print(stack,stdout);
           output=1;
@@ -105,17 +103,9 @@ int process(int_stack_t *stack,wordmap_t *words,char *line){
           int_stack_2rot(stack);
         }else if(0==strcmp(token->str,"depth")){
           int_stack_depth(stack);
-        }else if(0==strcmp(token->str,"if")){
-          process(stack,words,strdup(int_stack_if(stack,toLine)));
-        /*}else if(0==strcmp(token->str,"do")){
-          int max,min;
-          char* statement=int_stack_do(stack,&min,&max,toLine);
-          for(int i=min; i<max; i++){
-            process(stack,words,strdup(statement));
-          }
-        */
-        }else if(wordmap_containsKey(words,token->str)){
-          process(stack,words,strdup(wordmap_get(words,token->str)));
+        }else if(map_containsKey(words,token->str)){
+          AST_node_t* called=map_get(words,token->str);
+          AST_process(called,stack,words);
         }
 // incomplete response
         //print_token(token); // print the token
@@ -134,8 +124,8 @@ int main(int argc, char**argv){
   int_stack_t stack;
   int_stack_init(&stack,capacity);
   // initialize the word list
-  wordmap_t words;
-  wordmap_init(&words,capacity);
+  map_t words;
+  map_init(&words,capacity);
   // initialise variables to hold the user input (in a line by line manner in real time)
   char* line="\0"; // used to store the input of the current line (starting at the next token to be read)
   size_t l=0; // the size of the buffer allocated for line (getline will make it longer automatically if it is not long enough)

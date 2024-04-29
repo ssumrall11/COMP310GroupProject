@@ -1,8 +1,7 @@
 #include <stdlib.h>
-#include "LinkedList.h"
-#include "token.h"
-#include "ast.h"
-
+#include "LinkedList.h" // included in ast.h
+//#include "token.h"
+//#include "ast.h"
 
 // create a new entry for the linked list
 LL_node_t* LL_node_init(token_t* token,AST_node_t* node){
@@ -12,7 +11,7 @@ LL_node_t* LL_node_init(token_t* token,AST_node_t* node){
   LL_node_t* newNode=(LL_node_t*)malloc(sizeof(LL_node_t));
   newNode->value.token=token;
   newNode->value.node=node;
-  newNode->last=NULL;
+  //newNode->last=NULL;
   newNode->next=NULL;
   return newNode;
 }
@@ -25,12 +24,17 @@ LL_t* LL_init(){
   return list;
 }
 
+void LL_free(LL_t *list){
+  LL_node_free(list->head);
+  free(list);
+}
+
 // delete the entire list (might have errors)
-void LL_free(LL_node_t *head){
-  if(head->next!=null){
-    LL_delete(head->next);
+void LL_node_free(LL_node_t *head){
+  if(head->next!=NULL){
+    LL_node_free(head->next);
   }
-  free(head->value); // this may not work because I created both possible variable types myself
+  free_token(head->value.token); // this may not work because I created both possible variable types myself
   free(head->next); // almost certainly is redundant
   free(head);
 }
@@ -45,22 +49,21 @@ void LL_add(LL_t* list,LL_node_t* node){
   list->tail=node;
 }
 
-
 void LL_print(LL_t* list,int indent){
   for(int i=0; i<indent; i++){
     printf(" ");
   }
   printf("[");
-  LL_node_t* c = c->head;
+  LL_node_t* c = list->head;
   printf("LL_t: ");
   while(c != NULL){
-      if(c->value.token == NULL){
-	AST_print(c->value.node,indent);
-      } else if(c->value.node == NULL) {
-	print_token(c->value.token,indent);
-      }
-      printf(",");
-      c=c->next;
-   }
-   printf("]\n");
+    if(c->value.token == NULL){
+	  AST_print(c->value.node,indent);
+    }else{ //if(c->value.node == NULL){
+	  print_token(c->value.token,indent);
+    }
+    printf(",");
+    c=c->next;
+  }
+  printf("]\n");
 }
