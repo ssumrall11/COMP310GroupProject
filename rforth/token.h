@@ -2,19 +2,7 @@
 #ifndef TOKEN_H
 #define TOKEN_H
 
-// Enum to represent different token types
-typedef enum {
-  NUMBER=1,
-  OPERATOR=2,
-  SYMBOL=3,
-  WORD=4
-} token_type_t;
-
-// Struct to represent a token
-typedef struct {
-    token_type_t type;
-    char* str;
-} token_t;
+#include "types.h"
 
 // find the type of the class from the string
 extern token_type_t id_type(char* str);

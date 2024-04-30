@@ -1,6 +1,7 @@
 // int_stack.c
 #include <stdlib.h>
 #include <stdio.h>
+#include "types.h"
 #include "int_stack.h"
 
 void int_stack_init(int_stack_t *stk,int capacity) {

@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-//#include "ast.h"
+#include "types.h"
+#include "ast.h"
 #include "token.h"
-#include "int_stack.h"
-#include "astmap.h"
 #include "LinkedList.h"
+#include "astmap.h"
+
 
 // generate an abstract syntax tree given a line of forth code
 AST_node_t* generate_AST(map_t* worddefs,char** toStr,char* triggerword){
@@ -107,7 +108,7 @@ void process_AST(AST_node_t* root,int_stack_t* stack,map_t* words){
         AST_process(called,stack,words);
       }
     }else{ // c->value.token==NULL
-       process_AST(c->value.node,stack,words);
+      process_AST(c->value.node,stack,words);
     }
     c=c->next;
   }
@@ -119,6 +120,7 @@ void free_AST(AST_node_t* root){
   LL_free(root->children);
 }
 
+/*
 void AST_print(AST_node_t* root,int indent){
  for(int i=0; i<indent; i++){
    printf(" ");
@@ -126,3 +128,4 @@ void AST_print(AST_node_t* root,int indent){
  printf("\"%s\":\n",root->str);
  LL_print(root->children,indent+2);
 }
+*/

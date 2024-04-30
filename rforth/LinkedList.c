@@ -1,7 +1,8 @@
 #include <stdlib.h>
-#include "LinkedList.h" // included in ast.h
-//#include "token.h"
+#include "types.h"
+#include "token.h"
 //#include "ast.h"
+#include "LinkedList.h"
 
 // create a new entry for the linked list
 LL_node_t* LL_node_init(token_t* token,AST_node_t* node){
@@ -49,6 +50,7 @@ void LL_add(LL_t* list,LL_node_t* node){
   list->tail=node;
 }
 
+/*
 void LL_print(LL_t* list,int indent){
   for(int i=0; i<indent; i++){
     printf(" ");
@@ -67,3 +69,4 @@ void LL_print(LL_t* list,int indent){
   }
   printf("]\n");
 }
+*/

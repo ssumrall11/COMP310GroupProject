@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "types.h"
 #include "token.h"
 #include "int_stack.h"
-//#include "ast.h"
-//#include "astmap.h"
+#include "ast.h"
+#include "astmap.h"
 #include "LinkedList.h"
 
 // processes a single line of forth code

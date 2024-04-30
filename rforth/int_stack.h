@@ -2,19 +2,7 @@
 #ifndef INT_STACK_H
 #define INT_STACK_H
 
-#include <stdio.h>
-#include <sys/queue.h>
-
-typedef struct int_entry {
-  int value;
-  SLIST_ENTRY(int_entry) entries;
-} int_entry_t;
-
-typedef struct int_stack {
-  SLIST_HEAD(stackhead,int_entry) head;
-  int size;
-  int capacity;
-} int_stack_t;
+#include "types.h"
 
 // stack basics
 extern void int_stack_init(int_stack_t *stk, int capacity);

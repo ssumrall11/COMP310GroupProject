@@ -2,18 +2,7 @@
 #define ASTMAP_H
 
 #include <stdio.h>
-#include "ast.h"
-//#include "LinkedList.h"
-
-typedef struct map_node {
-  char* word;
-  AST_node_t* def;
-} map_node_t; // hash node
-
-typedef struct map {
-  map_node_t *head;
-  int capacity,size;
-} map_t ; // hash map
+#include "types.h"
 
 extern void map_init(map_t *map,int capacity);
 extern void map_print(map_t *map);
