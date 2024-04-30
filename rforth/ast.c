@@ -49,7 +49,7 @@ AST_node_t* generate_AST(map_t* worddefs,char** toStr,char* triggerword){
   return node;
 }
 
-void process_AST(AST_node_t* root,int_stack_t* stack,map_t* words){
+void AST_process(AST_node_t* root,int_stack_t* stack,map_t* words){
   LL_node_t* c = root->children->head;
   while(c != NULL){
     if(c->value.node == NULL){
@@ -108,7 +108,7 @@ void process_AST(AST_node_t* root,int_stack_t* stack,map_t* words){
         AST_process(called,stack,words);
       }
     }else{ // c->value.token==NULL
-      process_AST(c->value.node,stack,words);
+      AST_process(c->value.node,stack,words);
     }
     c=c->next;
   }
