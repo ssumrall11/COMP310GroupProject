@@ -108,7 +108,7 @@ int process(int_stack_t *stack,map_t *words,char *line){
           AST_node_t* called=map_get(words,token->str);
           AST_process(called,stack,words);
         }
-// incomplete response
+// no response for unrecognized stuff
         //print_token(token); // print the token
         break;
     }
@@ -119,7 +119,7 @@ int process(int_stack_t *stack,map_t *words,char *line){
 
 int main(int argc, char**argv){
   // print header
-  printf("RFORTH IMPLEMENTER (version 0.3.0a)\nDev: 02/11/2024-Present by Joshua Morin \n(Type `bye' to exit)\n");
+  printf("RFORTH IMPLEMENTER (version 0.3.1a)\nDev: 02/11/2024-Present by Joshua Morin, Sarah Sumrall, and Arrianna Szymczak\n(Type `bye' to exit)\n");
   const int capacity=256; // default capacity (maximum number of integers the stack can hold/words the wordmap can hold)
   // initialize the stack
   int_stack_t stack;

@@ -7,7 +7,9 @@ add_executable(
     main.c
     token.c
     int_stack.c
-    wordmap.c)
+    ast.c
+    LinkedList.c
+    astmap.c)
 add_executable(
     int_stack_tests
     int_stack_tests.cc
@@ -17,7 +19,7 @@ add_executable(
     token_tests
     token_tests.cc
     token.c
-   )
+    )
 target_link_libraries(
     int_stack_tests
     gtest_main
